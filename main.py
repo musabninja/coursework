@@ -1,38 +1,36 @@
+''' __  ___              __     _  ___        _     
+   /  |/  /_ _____ ___ _/ /    / |/ (_)__    (_)__ _
+  / /|_/ / // (_-</ _ `/ _ \  /    / / _ \  / / _ `/
+ /_/  /_/\_,_/___/\_,_/_.__/ /_/|_/_/_//_/_/ /\_,_/ 
+                                        |___/       
+www.github.com/musabninja
+'''
+
 import sys
-from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
-    QMainWindow, QApplication,
-    QLabel, QToolBar, QAction, 
-    QStatusBar,QMenu
+    QMainWindow, QApplication,QMenu,QLabel
 )
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import Qt
 
-
+# Window GUI Class
 class Window(QMainWindow):
-    #Main Window
     def __init__(self, parent=None):
-        #Initialiser
         super().__init__(parent)
-
-        self.setWindowTitle("Image Editor by Mus'Ab Al-Bahry")
-        self.resize(400, 200)
+        self.setWindowTitle("Image Editor")
+        self.resize(1050, 650)
         self._createMenuBar()
+        # self.initUI()
+
     def _createMenuBar(self):
-        class menuCreation():
-            def __init__(self2,name):
-                menuBar = self.menuBar()
-                self.setMenuBar(menuBar)
-                self2.name = name
-                self2.menucreation = QMenu(self2.name,self)
-                menuBar.addMenu(self2.menucreation)
+        menuBar = self.menuBar()
+        self.setMenuBar(menuBar)
+        def createMenu(name):
+            menuObj = QMenu(name,self)
+            menuBar.addMenu(menuObj)
+        file = createMenu("File")
+        effects = createMenu("Effects")
+        about = createMenu("About")
 
-        # Creating menus using my easy menu creation class
-        file = menuCreation("File")
-        effects = menuCreation("Effects")
-        about = menuCreation("About")
-
-
+# Starting application
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     win = Window()
